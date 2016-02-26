@@ -1,3 +1,6 @@
 require "pry"
 require "rspec"
-require_relative "../lib/blackjack"
+require_relative "../lib/game.rb"
+require_relative "../lib/hand.rb"
+require_relative "../lib/deck.rb"
+require_relative "../lib/card.rb"

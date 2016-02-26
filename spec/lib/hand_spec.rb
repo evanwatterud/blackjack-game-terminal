@@ -1,12 +1,13 @@
 require "spec_helper"
 
 RSpec.describe Hand do
-  let(:hand) { Hand.new(["10♦", "J♥"]) }
-  let(:hand2) { Hand.new(["10♦", "J♥", "A♥"]) }
-  let(:hand3) { Hand.new(["J♥", "A♥"]) }
-  let(:hand4) { Hand.new(["4♦", "3♥", "7♥"]) }
-  let(:hand5) { Hand.new(["A♦", "A♥"]) }
-  let(:hand6) { Hand.new(["3♥", "A♦", "A♥", "7♥"]) }
+  let(:hand) { Hand.new([Card.new(10, "♦"), Card.new(10, "♥")]) }
+  let(:hand2) { Hand.new([Card.new(10, "♦"), Card.new("J", "♥"), Card.new("A", "♥")]) }
+  let(:hand3) { Hand.new([Card.new("J", "♥"), Card.new("A", "♥")]) }
+  let(:hand4) { Hand.new([Card.new(4, "♦"), Card.new(3, "♥"), Card.new(7, "♥")]) }
+  let(:hand5) { Hand.new([Card.new("A", "♦"), Card.new("A", "♥")]) }
+  let(:hand6) { Hand.new([Card.new(3, "♥"), Card.new("A", "♦"), Card.new("A", "♥"), Card.new(7, "♥")]) }
+  let(:deck) { Deck.new }
 
   describe "#calculate_hand" do
     # Sample tests (change these once you understand)
@@ -37,6 +38,13 @@ RSpec.describe Hand do
 
     it "handles ace points recalculation" do
       expect(hand6.calculate_hand).to eq 12
+    end
+  end
+
+  describe "#recieve_cards" do
+    it "adds dealt cards to the hand" do
+      hand.recieve_cards(deck.deal(2))
+      expect(hand.cards.length).to eq 4
     end
   end
 end
